@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<ruleset xmlns="http://windup.jboss.org/schema/jboss-ruleset" id="javaee-to-jakarta-namespaces-jws"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
+    <metadata>
+        <description>
+            This ruleset provides analysis of Java EE applications that need to change their deployment descriptor namespaces
+        </description>
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-javaee,3.0.0.Final" />
+            <addon id="org.jboss.windup.rules,windup-rules-java,3.0.0.Final" />
+        </dependencies>
+        <targetTechnology id="jws" versionRange="[6,)" />
+    </metadata>
+    <rules>
+        <!-- https://issues.jboss.org/browse/WINDUP-3149 -->
+        <rule id="javaee-to-jakarta-namespaces-00001">
+            <when>
+                <filecontent filename="{*}.xml" pattern="http://xmlns.jcp.org/xml/ns/javaee" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE namespace, schemaLocation and version with the Jakarta equivalent" effort="1"
+                          category-id="mandatory">
+                        <message>Replace `http://xmlns.jcp.org/xml/ns/javaee` with `https://jakarta.ee/xml/ns/jakartaee` and change the schema version number </message>
+                        <link title="Jakarta EE XML Schemas"
+                              href="https://jakarta.ee/xml/ns/jakartaee/#10"/>
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace">
+                            <replacement>https://jakarta.ee/xml/ns/jakartaee</replacement>
+                            <search>http://xmlns.jcp.org/xml/ns/javaee</search>
+                        </quickfix>
+                    </hint>
+            </perform>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00017">
+            <when>
+                <filecontent filename="{*}.xml" pattern="web-app_3_1.xsd" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE XSD with the Jakarta equivalent" effort="1" category-id="mandatory">
+                    <message>Replace `web-app_3_1.xsd` with `web-app_5_0.xsd` and update the version attribute to `"5.0"`</message>
+                    <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                    <quickfix type="REPLACE" name="javaee-namespaces-replace-web-app_3_1-xsd">
+                        <replacement>web-app_5_0.xsd</replacement>
+                        <search>web-app_3_1.xsd</search>
+                    </quickfix>
+                </hint>
+            </perform>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00018">
+            <when>
+                <filecontent filename="{*}.xml" pattern="web-app_4_0.xsd" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE XSD with the Jakarta equivalent" effort="1" category-id="mandatory">
+                    <message>Replace `web-app_4_0.xsd` with `web-app_5_0.xsd` and update the version attribute to `"5.0"`</message>
+                    <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                    <quickfix type="REPLACE" name="javaee-namespaces-replace-web-app_4_0-xsd">
+                        <replacement>web-app_5_0.xsd</replacement>
+                        <search>web-app_4_0.xsd</search>
+                    </quickfix>
+                </hint>
+            </perform>
+        </rule>
+
+        <rule id="javaee-to-jakarta-namespaces-00019">
+            <when>
+                <filecontent filename="{*}.xml" pattern="web-fragment_3_1.xsd" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE XSD with the Jakarta equivalent" effort="1" category-id="mandatory">
+                    <message>Replace `web-fragment_3_1.xsd` with `web-fragment_5_0.xsd` and update the version attribute to `"5.0"`</message>
+                    <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                    <quickfix type="REPLACE" name="javaee-namespaces-replace-web-fragment_3_1-xsd">
+                        <replacement>web-fragment_5_0.xsd</replacement>
+                        <search>web-fragment_3_1.xsd</search>
+                    </quickfix>
+                </hint>
+            </perform>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00020">
+            <when>
+                <filecontent filename="{*}.xml" pattern="web-fragment_4_0.xsd" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE XSD with the Jakarta equivalent" effort="1" category-id="mandatory">
+                    <message>Replace `web-fragment_4_0.xsd` with `web-fragment_5_0.xsd` and update the version attribute to `"5.0"`</message>
+                    <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                    <quickfix type="REPLACE" name="javaee-namespaces-replace-web-fragment_4_0-xsd">
+                        <replacement>web-fragment_5_0.xsd</replacement>
+                        <search>web-fragment_4_0.xsd</search>
+                    </quickfix>
+                </hint>
+            </perform>
+        </rule>
+
+        <rule id="javaee-to-jakarta-namespaces-00027">
+            <when>
+                <filecontent filename="{*}.xml" pattern="web-jsptaglibrary_2_1.xsd" />
+            </when>
+            <perform>
+                <hint title="Replace the Java EE XSD with the Jakarta equivalent" effort="1" category-id="mandatory">
+                    <message>Replace `web-jsptaglibrary_2_1.xsd` with `web-jsptaglibrary_3_0.xsd` and update the version attribute to `"3.0"`</message>
+                    <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                    <quickfix type="REPLACE" name="javaee-namespaces-replace-web-jsptaglibrary_2_1-xsd">
+                        <replacement>web-jsptaglibrary_3_0.xsd</replacement>
+                        <search>web-jsptaglibrary_2_1.xsd</search>
+                    </quickfix>
+                </hint>
+            </perform>
+        </rule>
+
+        <rule id="javaee-to-jakarta-namespaces-00044">
+            <when>
+                <xmlfile matches="p:web-app[@version='3.1']" as="xml-file">
+                    <namespace prefix="p" uri="http://xmlns.jcp.org/xml/ns/javaee" />
+                </xmlfile>
+                <filecontent pattern="version={quotes}3.1{quotes}" from="xml-file" as="result"/>
+            </when>
+            <perform>
+                <iteration over="result">
+                    <hint title="Replace the Java EE version with the Jakarta equivalent" effort="1" category-id="mandatory">
+                        <message>`web-app_3_1`: In the root tag, replace the `version` attribute value with `5.0`</message>
+                        <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace-web-app_3_1-version">
+                            <replacement>5.0</replacement>
+                            <search>3.1</search>
+                        </quickfix>
+                    </hint>
+                </iteration>
+            </perform>
+            <where param="quotes">
+                <matches pattern="(&quot;|')" />
+            </where>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00045">
+            <when>
+                <xmlfile matches="p:web-app[@version='4.0']" as="xml-file">
+                    <namespace prefix="p" uri="http://xmlns.jcp.org/xml/ns/javaee" />
+                </xmlfile>
+                <filecontent pattern="version={quotes}4.0{quotes}" from="xml-file" as="result"/>
+            </when>
+            <perform>
+                <iteration over="result">
+                    <hint title="Replace the Java EE version with the Jakarta equivalent" effort="1" category-id="mandatory">
+                        <message>`web-app_4_0`: In the root tag, replace the `version` attribute value with `5.0`</message>
+                        <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace-web-app_4_0-version">
+                            <replacement>5.0</replacement>
+                            <search>4.0</search>
+                        </quickfix>
+                    </hint>
+                </iteration>
+            </perform>
+            <where param="quotes">
+                <matches pattern="(&quot;|')" />
+            </where>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00046">
+            <when>
+                <xmlfile matches="p:web-fragment[@version='3.1']" as="xml-file">
+                    <namespace prefix="p" uri="http://xmlns.jcp.org/xml/ns/javaee" />
+                </xmlfile>
+                <filecontent pattern="version={quotes}3.1{quotes}" from="xml-file" as="result"/>
+            </when>
+            <perform>
+                <iteration over="result">
+                    <hint title="Replace the Java EE version with the Jakarta equivalent" effort="1" category-id="mandatory">
+                        <message>`web-fragment_3_1`: In the root tag, replace the `version` attribute value with `5.0`</message>
+                        <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace-web-fragment_3_1-version">
+                            <replacement>5.0</replacement>
+                            <search>3.1</search>
+                        </quickfix>
+                    </hint>
+                </iteration>
+            </perform>
+            <where param="quotes">
+                <matches pattern="(&quot;|')" />
+            </where>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00047">
+            <when>
+                <xmlfile matches="p:web-fragment[@version='4.0']" as="xml-file">
+                    <namespace prefix="p" uri="http://xmlns.jcp.org/xml/ns/javaee" />
+                </xmlfile>
+                <filecontent pattern="version={quotes}4.0{quotes}" from="xml-file" as="result"/>
+            </when>
+            <perform>
+                <iteration over="result">
+                    <hint title="Replace the Java EE version with the Jakarta equivalent" effort="1" category-id="mandatory">
+                        <message>`web-fragment_4_0`: In the root tag, replace the `version` attribute value with `5.0`</message>
+                        <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace-web-fragment_4_0-version">
+                            <replacement>5.0</replacement>
+                            <search>4.0</search>
+                        </quickfix>
+                    </hint>
+                </iteration>
+            </perform>
+            <where param="quotes">
+                <matches pattern="(&quot;|')" />
+            </where>
+        </rule>
+        <rule id="javaee-to-jakarta-namespaces-00052">
+            <when>
+                <xmlfile matches="p:taglib[@version='2.1']" as="xml-file">
+                    <namespace prefix="p" uri="http://xmlns.jcp.org/xml/ns/javaee" />
+                </xmlfile>
+                <filecontent pattern="version={quotes}2.1{quotes}" from="xml-file" as="result"/>
+            </when>
+            <perform>
+                <iteration over="result">
+                    <hint title="Replace the Java EE version with the Jakarta equivalent" effort="1" category-id="mandatory">
+                        <message>`web-jsptaglibrary_2_1`: In the root tag, replace the `version` attribute value with `3.0`</message>
+                        <link title="Jakarta XML Schemas" href="https://jakarta.ee/xml/ns/jakartaee/#9" />
+                        <quickfix type="REPLACE" name="javaee-namespaces-replace-web-jsptaglibrary_2_1-version">
+                            <replacement>3.0</replacement>
+                            <search>2.1</search>
+                        </quickfix>
+                    </hint>
+                </iteration>
+            </perform>
+            <where param="quotes">
+                <matches pattern="(&quot;|')" />
+            </where>
+        </rule>
+    </rules>
+</ruleset>
